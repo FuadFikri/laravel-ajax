@@ -11,8 +11,8 @@
     <title>Hello, world!</title>
   </head>
   <body>
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">Top navbar</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,25 +34,60 @@
         </form>
       </div>
     </nav>
+    <br>
+    <div class="container">
 
-    <main role="main" class="container">
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser's viewport.</p>
-        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View navbar docs &raquo;</a>
-      </div>
-    </main>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Contact List
+                            <a onclick="#" class="btn btn-success pull-right" style="margin:8px; float:right;">Add Contact</a>
+                        </h4>
+                    </div>
+                <div class="panel-body">
+                <table class="table table-striped" id="contact-table">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/b-1.5.2/b-flash-1.5.2/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.18/b-1.5.2/b-flash-1.5.2/datatables.min.js"></script>
+     <script src="https://cdnjs.com/libraries/1000hz-bootstrap-validator"></script>
+
+    <script type="text/javascript">
+        $('#contact-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ url('api/contact') }}",
+            columns: [
+                {data: 'id', name: 'id'},
+                {data: 'name', name: 'name'},
+                {data: 'email', name: 'email'},
+                {data: 'action', name: 'action', orderable:false, searchable:false},
+            ]
+        });
+
+    </script>
   </body>
 </html>
