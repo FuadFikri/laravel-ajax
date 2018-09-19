@@ -126,7 +126,7 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ asset('assets/bootstrap/js/ie10-viewport-bug-workaround.js') }}"></script>
-
+    
     <script type="text/javascript">
       var table = $('#contact-table').DataTable({
                       processing: true,
@@ -148,6 +148,29 @@
         $('.modal-title').text('Add Contact');
       }
       
+      $(function(){
+        $('#modal-form form').validator().on('submit', function(e){
+          if(!e.isDefaultPrevented()){
+              var id = $('#id').val();
+              if(save_method == 'add') url = "{{ url('contact') }}";
+              else url = "{{ url('contact'). '/' }}"+id;
+
+              $.ajax({
+                url : url,
+                type : "POST",
+                data : $('#modal-form form').serialize(),
+                success : function($data){
+                  $('#modal-form').modal('hide');
+                  table.ajax.reload();
+                },
+                error : function(){
+                  alert('something wrong');
+                }
+              });
+              return false;
+          }
+        }); 
+      });
     </script>
   </body>
 </html>
