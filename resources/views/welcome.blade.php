@@ -149,11 +149,11 @@
       }
 
       function editForm(id){
-          save_method = 'edit';
-          $('input[name_method]').val('PATCH');
+          save_method = "edit";
+          $('input[name=_method]').val('PATCH');
           $('#modal-form form')[0].reset();
           $.ajax({
-              url: "{{ url('contact') }}" + '/' + id + "/edit",
+              url: "{{ url('contact') }}" + '/' + id + '/edit',
               type: "GET",
               dataType: "JSON",
               success: function(data){

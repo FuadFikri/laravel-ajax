@@ -76,7 +76,11 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $contact = Contact::find($id);
+        $contact->name = $request['name'];
+        $contact->email = $request['email'];
+        $contat->update();
+        return $contact;
     }
 
     /**
@@ -96,7 +100,7 @@ class ContactController extends Controller
             ->addColumn('action', function($contact){
             return  '<a href="#" class="btn btn-info btn-xs" style="margin:2px;"><i class="glyphicon glyphicon-eye-open"></i>Show</a>'.
                     '<a onclick="editForm('. $contact->id . ')" style="margin:2px;" class="btn btn-primary btn-xs"><i class =glyphicon glyphicon-eye-edit"></i>Edit</a>' .
-                    '<a onclick="editForm('. $contact->id . ')" style="margin:2px;" class="btn btn-danger btn-xs"><i class =glyphicon glyphicon-eye-edit"></i>Delete</a>';
+                    '<a onclick="deleteData('. $contact->id . ')" style="margin:2px;" class="btn btn-danger btn-xs"><i class =glyphicon glyphicon-eye-edit"></i>Delete</a>';
         })->make(true);
     }
 }

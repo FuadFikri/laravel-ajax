@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="form-contact" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
-                {{ csrf_field() }} {{ method_field('POST') }}
+                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true"> &times; </span>
